@@ -25,3 +25,6 @@ class UpdateShipmentDTO(BaseModel):
     weight: float = Field(gt=10.0)
     content: str = Field(min_length=4, max_length=15)
     status: Status
+
+class UpdateShipmentStatusDTO(BaseModel):
+    status: Status
