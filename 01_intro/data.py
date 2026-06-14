@@ -1,43 +1,43 @@
 shipments = [
     {
         "id": 1,
-        "weight": .6,
+        "weight": 11.6,
         "content": "glassware",
         "status": "placed"
     },
     {
         "id": 2,
-        "weight": 2.3,
+        "weight": 22.3,
         "content": "books",
         "status": "shipped"
     },
     {
         "id": 3,
-        "weight": 1.1,
+        "weight": 14.1,
         "content": "electronics",
         "status": "delivered"
     },
     {
         "id": 4,
-        "weight": 3.5,
+        "weight": 35.5,
         "content": "furniture",
-        "status": "in transit"
+        "status": "pending"
     },
     {
         "id": 5,
-        "weight": .9,
+        "weight": 14.9,
         "content": "clothing",
-        "status": "returned"
+        "status": "cancelled"
     },
     {
         "id": 6,
-        "weight": 4.0,
+        "weight": 44.0,
         "content": "appliances",
-        "status": "processing"
+        "status": "pending"
     },
    {
         "id": 7,
-        "weight": 1.8,
+        "weight": 114.8,
         "content": "toys",
         "status": "placed"
     },
