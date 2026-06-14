@@ -1,3 +1,6 @@
+from datetime import datetime
+from typing import Any
+
 from fastapi import FastAPI
 from scalar_fastapi import get_scalar_api_reference
 
@@ -18,3 +21,11 @@ async def scalar_html():
 @app.get("/shipment")
 async def get_shipment():
     return {"id": "123", "status": "delivered"}
+
+@app.get("/shipment/{id}")
+async def get_shipment(id: int) -> dict[str, Any]:
+    return {
+        "id": id,
+        "status": "delivered",
+        "date": datetime.now(),
+    }
