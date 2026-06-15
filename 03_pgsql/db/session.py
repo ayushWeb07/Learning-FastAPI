@@ -24,5 +24,3 @@ async_session = sessionmaker(bind=engine, expire_on_commit=False, class_=AsyncSe
 async def get_session() -> AsyncSession:
     async with async_session() as session:
         yield session
-
-SessionDependency= Annotated[AsyncSession, Depends(get_session)]
