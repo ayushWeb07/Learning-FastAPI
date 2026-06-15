@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from scalar_fastapi import get_scalar_api_reference
-from db.session import create_all_tables
+from db import session
 from api import routers
 
 @asynccontextmanager
 async def lifespan_handler(app: FastAPI):
-    create_all_tables() # create tables when the server starts
+    await session.create_all_tables() # create tables when the server starts
     yield
 
 app= FastAPI(lifespan= lifespan_handler)
