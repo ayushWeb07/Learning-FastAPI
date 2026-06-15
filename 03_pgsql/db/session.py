@@ -1,9 +1,10 @@
 from typing import Annotated
 
 from fastapi import Depends
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import sessionmaker
-from sqlmodel import Session
+from sqlmodel.ext.asyncio.session import AsyncSession
+
 from config import env_config
 
 # create an engine
@@ -21,7 +22,7 @@ async def create_all_tables():
         from .models import ShipmentModel
         await conn.run_sync(ShipmentModel.metadata.create_all)
 
-async def get_session():
+async def get_session() -> AsyncSession:
     async_session= sessionmaker(bind=engine, expire_on_commit=False, class_=AsyncSession)
 
     async with async_session() as session:
