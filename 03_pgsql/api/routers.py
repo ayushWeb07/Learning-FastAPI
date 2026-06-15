@@ -1,10 +1,6 @@
 from fastapi import HTTPException, status
 from fastapi import APIRouter
 
-from api.services import ShipmentService
-from db.session import SessionDependency
-from sqlmodel import select
-from db.models import ShipmentModel
 from dependencies import ServiceDependency
 from dtos import GetShipmentDTO, CreateShipmentDTO, UpdateShipmentDTO
 
@@ -43,19 +39,19 @@ async def create_shipment(shipment: CreateShipmentDTO, service: ServiceDependenc
 # update shipment
 @shipments_router.patch("/{shipment_id}", status_code= status.HTTP_200_OK, response_model= GetShipmentDTO)
 async def update_shipment(shipment_id: int, shipment: UpdateShipmentDTO, service: ServiceDependency):
-    existing_shipment= await service.update_shipment(shipment_id, shipment)
+    updated_shipment= await service.update_shipment(shipment_id, shipment)
 
-    if not existing_shipment:
+    if not updated_shipment:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Shipment not found")
 
-    return existing_shipment
+    return updated_shipment
 
 # delete shipment
 @shipments_router.delete("/{shipment_id}", status_code= status.HTTP_200_OK, response_model= dict[str, str])
 async def delete_shipment(shipment_id: int, service: ServiceDependency):
-    existing_shipment = await service.delete_shipment(shipment_id)
+    deleted_shipment = await service.delete_shipment(shipment_id)
 
-    if not existing_shipment:
+    if not deleted_shipment:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Shipment not found")
 
     return {
